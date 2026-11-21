@@ -156,6 +156,8 @@
   <g class="sweep"><rect x="9" y="292" width="54" height="146" fill="url(#ph)" opacity="0.07"/><rect x="63" y="292" width="2" height="146" rx="1" fill="#ffffff" opacity="0.6"/></g>
 </g>
 <rect x="0.5" y="0.5" width="1279" height="16" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="838" y="94" width="240" height="36" rx="18" fill="#1ed760" fill-opacity="0.1" stroke="#1ed760" stroke-opacity="0.45"/>
+<text x="958" y="118" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#1ed760" text-anchor="middle">v0.5 &#183; FREE + PREMIUM</text>
 <circle cx="1160" cy="112" r="58" fill="#1ed760" fill-opacity="0.1" stroke="#1ed760" stroke-opacity="0.45" stroke-width="1.5"/>
 <g transform="translate(1124 76) scale(4.5)" fill="#1ed760"><path d="M1 3.5a.75.75 0 0 1 .75-.75c3.2 0 5.03 2.27 6.25 4.6 1.22-2.33 3.05-4.6 6.25-4.6a.75.75 0 0 1 0 1.5c-2.53 0-3.97 1.9-5.4 4.75 1.43 2.85 2.87 4.75 5.4 4.75a.75.75 0 0 1 0 1.5c-3.2 0-5.03-2.27-6.25-4.6-1.22 2.33-3.05 4.6-6.25 4.6a.75.75 0 0 1 0-1.5c2.53 0 3.97-1.9 5.4-4.75C5.72 6.15 4.28 4.25 1.75 4.25A.75.75 0 0 1 1 3.5z"/></g>
 <g font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif">

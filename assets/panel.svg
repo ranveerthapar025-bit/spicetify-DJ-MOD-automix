@@ -1,13 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="750" viewBox="0 0 1280 750" role="img" aria-label="DJ Mix inside Spotify: the panel with live countdown, Mix now and Skip buttons, settings, recent mixes and stats; the mix notification; and the glowing next-mix zone on Spotify's seek bar">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="980" viewBox="0 0 1280 980" role="img" aria-label="DJ Mix inside Spotify: the panel with live countdown, engine status, Mix now and Skip buttons, engine settings, beat-match filters, recent mixes and stats; beat-match and smooth-fade notifications; green beat-match and blue fade zones on Spotify's seek bar; and the Ctrl+Alt+D shortcut">
 <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0e0c"/><stop offset="1" stop-color="#0e1c14"/></linearGradient>
-  <radialGradient id="glow" cx="0.9" cy="0.6" r="0.45"><stop offset="0" stop-color="#1ed760" stop-opacity="0.16"/><stop offset="1" stop-color="#1ed760" stop-opacity="0"/></radialGradient>
+  <radialGradient id="glow" cx="0.9" cy="0.5" r="0.45"><stop offset="0" stop-color="#1ed760" stop-opacity="0.14"/><stop offset="1" stop-color="#1ed760" stop-opacity="0"/></radialGradient>
+  <radialGradient id="glowb" cx="0.85" cy="0.9" r="0.35"><stop offset="0" stop-color="#4cc3ff" stop-opacity="0.12"/><stop offset="1" stop-color="#4cc3ff" stop-opacity="0"/></radialGradient>
   <radialGradient id="btnglow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#1ed760" stop-opacity="0.35"/><stop offset="1" stop-color="#1ed760" stop-opacity="0"/></radialGradient>
   <linearGradient id="zone" x1="0" x2="1"><stop offset="0" stop-color="#1ed760" stop-opacity="0.75"/><stop offset="1" stop-color="#1ed760" stop-opacity="0.15"/></linearGradient>
+  <linearGradient id="zoneb" x1="0" x2="1"><stop offset="0" stop-color="#4cc3ff" stop-opacity="0.75"/><stop offset="1" stop-color="#4cc3ff" stop-opacity="0.1"/></linearGradient>
   <filter id="soft" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="4"/></filter>
-  <clipPath id="card"><rect width="1280" height="750" rx="28"/></clipPath>
+  <clipPath id="card"><rect width="1280" height="980" rx="28"/></clipPath>
   <path id="dj" d="M1 3.5a.75.75 0 0 1 .75-.75c3.2 0 5.03 2.27 6.25 4.6 1.22-2.33 3.05-4.6 6.25-4.6a.75.75 0 0 1 0 1.5c-2.53 0-3.97 1.9-5.4 4.75 1.43 2.85 2.87 4.75 5.4 4.75a.75.75 0 0 1 0 1.5c-3.2 0-5.03-2.27-6.25-4.6-1.22 2.33-3.05 4.6-6.25 4.6a.75.75 0 0 1 0-1.5c2.53 0 3.97-1.9 5.4-4.75C5.72 6.15 4.28 4.25 1.75 4.25A.75.75 0 0 1 1 3.5z"/>
   <g id="tick"><rect width="18" height="18" rx="3" fill="#1ed760"/><path d="M4 9 l3.5 3.5 l6.5 -7" stroke="#0a0e0c" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g id="untick"><rect x="0.75" y="0.75" width="16.5" height="16.5" rx="3" fill="none" stroke="#8a8a8a" stroke-width="1.5"/></g>
+  <path id="caret" d="M0 0 l4 4 l4 -4" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 </defs>
 <style>
   .pulse { animation: pulse 1.6s ease-in-out infinite alternate; }
@@ -17,10 +21,11 @@
   @media (prefers-reduced-motion: reduce) { .pulse, .meter { animation: none; } }
 </style>
 <g clip-path="url(#card)">
-  <rect width="1280" height="750" fill="url(#bg)"/>
-  <rect width="1280" height="750" fill="url(#glow)"/>
+  <rect width="1280" height="980" fill="url(#bg)"/>
+  <rect width="1280" height="980" fill="url(#glow)"/>
+  <rect width="1280" height="980" fill="url(#glowb)"/>
 </g>
-<rect x="0.5" y="0.5" width="1279" height="749" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="0.5" y="0.5" width="1279" height="979" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
 
 <g font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif">
   <text x="48" y="74" font-size="18" font-weight="700" letter-spacing="4" fill="#1ed760">IN SPOTIFY</text>
@@ -28,55 +33,82 @@
 
   <!-- ============ panel ============ -->
   <g transform="translate(48 160)">
-    <rect width="640" height="556" rx="12" fill="#242424" stroke="#ffffff" stroke-opacity="0.08"/>
+    <rect width="640" height="780" rx="12" fill="#242424" stroke="#ffffff" stroke-opacity="0.08"/>
     <text x="32" y="50" font-size="26" font-weight="700" fill="#ffffff">DJ Mix</text>
     <path d="M594 34 l16 16 M610 34 l-16 16" stroke="#b3b3b3" stroke-width="2.2" stroke-linecap="round"/>
 
     <!-- status -->
-    <rect x="32" y="74" width="576" height="104" rx="8" fill="#ffffff" fill-opacity="0.07"/>
+    <rect x="32" y="74" width="576" height="124" rx="8" fill="#ffffff" fill-opacity="0.07"/>
     <text x="50" y="108" font-size="19" font-weight="700" fill="#ffffff">Next mix → Neon Skyline at 3:12 <tspan fill="#b3b3b3" font-weight="400">(in 0:41)</tspan></text>
-    <text x="50" y="136" font-size="14" fill="#b3b3b3">16 bars · 7.7s overlap · beat-matched 105→107 BPM · +1.9% tempo</text>
-    <rect x="50" y="154" width="540" height="4" rx="2" fill="#ffffff" fill-opacity="0.1"/>
-    <rect class="meter" x="50" y="154" width="430" height="4" rx="2" fill="#1ed760"/>
+    <text x="50" y="134" font-size="14" fill="#b3b3b3">16 bars · 7.7s overlap · beat-matched 105→107 BPM · +1.9% tempo</text>
+    <rect x="50" y="150" width="540" height="4" rx="2" fill="#ffffff" fill-opacity="0.1"/>
+    <rect class="meter" x="50" y="150" width="430" height="4" rx="2" fill="#1ed760"/>
+    <text x="50" y="182" font-size="12" fill="#ffffff" fill-opacity="0.55">Engine: Beat-match, smooth fade as backup</text>
 
     <!-- actions -->
-    <rect x="32" y="194" width="280" height="38" rx="19" fill="none" stroke="#1ed760" stroke-width="1.2"/>
-    <path d="M132 206 l9 7 l-9 7 z M142 206 l9 7 l-9 7 z" fill="#1ed760"/>
-    <text x="158" y="219" font-size="14" font-weight="700" fill="#1ed760">Mix now</text>
-    <rect x="328" y="194" width="280" height="38" rx="19" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.2"/>
-    <text x="468" y="218" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Skip this mix</text>
+    <rect x="32" y="214" width="280" height="38" rx="19" fill="none" stroke="#1ed760" stroke-width="1.2"/>
+    <path d="M132 226 l9 7 l-9 7 z M142 226 l9 7 l-9 7 z" fill="#1ed760"/>
+    <text x="158" y="239" font-size="14" font-weight="700" fill="#1ed760">Mix now</text>
+    <rect x="328" y="214" width="280" height="38" rx="19" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.2"/>
+    <text x="468" y="238" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Skip this mix</text>
 
-    <!-- settings -->
-    <text x="32" y="270" font-size="15" fill="#ffffff">Mix songs like a DJ <tspan fill="#ffffff" fill-opacity="0.5">(Ctrl+Alt+D)</tspan></text>
-    <use href="#tick" x="590" y="256"/>
-    <text x="32" y="306" font-size="15" fill="#ffffff">Show a notification on each mix</text>
-    <use href="#tick" x="590" y="292"/>
-    <text x="32" y="342" font-size="15" fill="#ffffff">Show the next mix on the seek bar</text>
-    <use href="#tick" x="590" y="328"/>
-    <text x="32" y="378" font-size="15" fill="#ffffff">Only mix when Spotify can beat-match</text>
-    <rect x="590.75" y="364.75" width="16.5" height="16.5" rx="3" fill="none" stroke="#8a8a8a" stroke-width="1.5"/>
-    <text x="32" y="414" font-size="15" fill="#ffffff">Largest tempo change allowed</text>
-    <rect x="540" y="396" width="68" height="26" rx="4" fill="#3a3a3a"/>
-    <text x="552" y="414" font-size="13" fill="#ffffff">Any</text>
-    <path d="M590 406 l4 4 l4 -4" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- general -->
+    <g font-size="15" fill="#ffffff">
+      <text x="32" y="292">Mix songs like a DJ <tspan fill-opacity="0.5">(Ctrl+Alt+D)</tspan></text>
+      <use href="#tick" x="590" y="278"/>
+      <text x="32" y="326">Show a notification on each mix</text>
+      <use href="#tick" x="590" y="312"/>
+      <text x="32" y="360">Show the next mix on the seek bar</text>
+      <use href="#tick" x="590" y="346"/>
 
-    <!-- history -->
-    <text x="32" y="450" font-size="11" font-weight="600" letter-spacing="1.2" fill="#ffffff" fill-opacity="0.6">RECENT MIXES</text>
-    <text x="32" y="474" font-size="13" fill="#ffffff"><tspan fill-opacity="0.7">Midnight Drive</tspan> → <tspan font-weight="700">Neon Skyline</tspan><tspan dx="10" fill="#8a8a8a" font-size="12">112→114 BPM · +1.8% · 21:40</tspan></text>
-    <text x="32" y="500" font-size="13" fill="#ffffff"><tspan fill-opacity="0.7">Golden Hour</tspan> → <tspan font-weight="700">Midnight Drive</tspan><tspan dx="10" fill="#8a8a8a" font-size="12">crossfade · 21:36</tspan></text>
-    <text x="32" y="532" font-size="12" fill="#8a8a8a">All time: 128 mixes · 81% beat-matched · avg tempo shift 1.7% · 42 min of blending</text>
+      <!-- engine -->
+      <text x="32" y="400" font-size="11" font-weight="600" letter-spacing="1.2" fill-opacity="0.6">ENGINE</text>
+      <text x="32" y="430">Mix engine</text>
+      <rect x="520" y="412" width="88" height="26" rx="4" fill="#3a3a3a"/>
+      <text x="532" y="430" font-size="13">Auto</text>
+      <use href="#caret" x="590" y="423"/>
+      <text x="32" y="464">Fade songs beat-match can't mix (queue, no transition)</text>
+      <use href="#tick" x="590" y="450"/>
+      <text x="32" y="498">Fade length</text>
+      <rect x="520" y="480" width="88" height="26" rx="4" fill="#3a3a3a"/>
+      <text x="532" y="498" font-size="13">6s</text>
+      <use href="#caret" x="590" y="491"/>
+      <text x="32" y="532">Start the next song past its quiet intro</text>
+      <use href="#tick" x="590" y="518"/>
+
+      <!-- filters -->
+      <text x="32" y="572" font-size="11" font-weight="600" letter-spacing="1.2" fill-opacity="0.6">BEAT-MATCH FILTERS</text>
+      <text x="32" y="602">Only mix when Spotify can beat-match</text>
+      <use href="#untick" x="590" y="588"/>
+      <text x="32" y="636">Largest tempo change allowed</text>
+      <rect x="520" y="618" width="88" height="26" rx="4" fill="#3a3a3a"/>
+      <text x="532" y="636" font-size="13">Any</text>
+      <use href="#caret" x="590" y="629"/>
+
+      <!-- history -->
+      <text x="32" y="676" font-size="11" font-weight="600" letter-spacing="1.2" fill-opacity="0.6">RECENT MIXES</text>
+      <text x="32" y="702" font-size="13"><tspan fill-opacity="0.7">Midnight Drive</tspan> → <tspan font-weight="700">Neon Skyline</tspan><tspan dx="10" fill="#8a8a8a" font-size="12">112→114 BPM · +1.8% · 21:40</tspan></text>
+      <text x="32" y="726" font-size="13"><tspan fill-opacity="0.7">Golden Hour</tspan> → <tspan font-weight="700">Midnight Drive</tspan><tspan dx="10" fill="#8a8a8a" font-size="12">smooth fade 6s · 21:36</tspan></text>
+      <text x="32" y="756" font-size="12" fill="#8a8a8a">All time: 128 mixes · 81% beat-matched · avg tempo shift 1.7% · 42 min of blending · 9 smooth fades</text>
+    </g>
   </g>
 
-  <!-- ============ notification ============ -->
+  <!-- ============ notifications ============ -->
   <g transform="translate(736 172)">
-    <rect width="496" height="60" rx="10" fill="#1ed760"/>
-    <use href="#dj" transform="translate(22 18) scale(1.5)" fill="#0a0e0c"/>
-    <text x="62" y="36" font-size="15" font-weight="600" fill="#0a0e0c">Mixing into Neon Skyline · beat-matched (+1.9% tempo)</text>
+    <rect width="496" height="56" rx="10" fill="#1ed760"/>
+    <use href="#dj" transform="translate(22 16) scale(1.5)" fill="#0a0e0c"/>
+    <text x="62" y="34" font-size="15" font-weight="600" fill="#0a0e0c">Mixing into Neon Skyline · beat-matched (+1.9% tempo)</text>
   </g>
-  <text x="736" y="262" font-size="15" fill="#8fa098">A heads-up as each mix starts. Optional.</text>
+  <g transform="translate(736 240)">
+    <rect width="496" height="56" rx="10" fill="#4cc3ff"/>
+    <path d="M20 18 C28 18 28 38 36 38 M40 38 C48 38 48 18 56 18" stroke="#0a0e0c" stroke-width="2.4" fill="none" stroke-linecap="round" transform="translate(-4 0)"/>
+    <text x="62" y="34" font-size="15" font-weight="600" fill="#0a0e0c">Fading into Neon Skyline</text>
+    <text x="474" y="34" font-size="12" font-weight="700" fill="#0a0e0c" fill-opacity="0.6" text-anchor="end">SPOTIFY FREE</text>
+  </g>
+  <text x="736" y="324" font-size="15" fill="#8fa098">A heads-up as each mix or fade starts. Optional.</text>
 
-  <!-- ============ playbar with seek-bar marker ============ -->
-  <g transform="translate(736 300)">
+  <!-- ============ playbar (Premium) ============ -->
+  <g transform="translate(736 352)">
     <rect width="496" height="104" rx="12" fill="#121212" stroke="#ffffff" stroke-opacity="0.08"/>
     <path d="M86 28 h6 l12 14 h8 M86 42 h6 l12 -14 h8" stroke="#b3b3b3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <rect x="134" y="27" width="2.5" height="16" rx="1" fill="#b3b3b3"/><path d="M152 27 v16 l-13 -8 z" fill="#b3b3b3"/>
@@ -89,8 +121,6 @@
     <circle cx="456" cy="36" r="30" fill="url(#btnglow)" class="pulse"/>
     <use href="#dj" transform="translate(444 24) scale(1.5)" fill="#1ed760"/>
     <circle cx="456" cy="56" r="2.5" fill="#1ed760"/>
-
-    <!-- progress + marker -->
     <text x="26" y="80" font-size="11" fill="#a7a7a7">2:31</text>
     <rect x="58" y="73" width="380" height="4" rx="2" fill="#4d4d4d"/>
     <rect x="58" y="73" width="217" height="4" rx="2" fill="#ffffff"/>
@@ -99,11 +129,35 @@
     <rect x="364" y="69" width="2" height="12" fill="#1ed760"/>
     <text x="446" y="80" font-size="11" fill="#a7a7a7">3:53</text>
   </g>
-  <text x="736" y="434" font-size="15" fill="#8fa098">The <tspan fill="#1ed760" font-weight="700">glowing zone</tspan> on the seek bar is the next mix:</text>
-  <text x="736" y="456" font-size="15" fill="#8fa098">where it starts and how long the overlap lasts.</text>
+
+  <!-- ============ seek bar (Free) ============ -->
+  <g transform="translate(736 470)">
+    <rect width="496" height="64" rx="12" fill="#121212" stroke="#4cc3ff" stroke-opacity="0.25"/>
+    <text x="26" y="24" font-size="11" font-weight="700" letter-spacing="2" fill="#4cc3ff">ON SPOTIFY FREE</text>
+    <text x="26" y="48" font-size="11" fill="#a7a7a7">2:31</text>
+    <rect x="58" y="41" width="380" height="4" rx="2" fill="#4d4d4d"/>
+    <rect x="58" y="41" width="217" height="4" rx="2" fill="#ffffff"/>
+    <rect x="372" y="37" width="24" height="12" rx="3" fill="#4cc3ff" filter="url(#soft)" class="pulse"/>
+    <rect x="372" y="37" width="24" height="12" rx="3" fill="url(#zoneb)"/>
+    <rect x="372" y="37" width="2" height="12" fill="#4cc3ff"/>
+    <text x="446" y="48" font-size="11" fill="#a7a7a7">3:53</text>
+  </g>
+  <text x="736" y="566" font-size="15" fill="#8fa098">The glowing zone on the seek bar is the next mix:</text>
+  <text x="736" y="588" font-size="15" fill="#8fa098"><tspan fill="#1ed760" font-weight="700">green</tspan> for a beat-matched blend, <tspan fill="#4cc3ff" font-weight="700">blue</tspan> for a smooth fade.</text>
+
+  <!-- ============ engine line ============ -->
+  <g transform="translate(736 624)" font-size="13">
+    <rect width="496" height="40" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.1"/>
+    <circle cx="20" cy="20" r="5" fill="#1ed760"/>
+    <text x="36" y="25" fill="#ffffff" fill-opacity="0.8">Engine: Beat-match, smooth fade as backup</text>
+    <rect y="50" width="496" height="40" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.1"/>
+    <circle cx="20" cy="70" r="5" fill="#4cc3ff"/>
+    <text x="36" y="75" fill="#ffffff" fill-opacity="0.8">Engine: Smooth fade · Free account (beat-matching needs Premium)</text>
+  </g>
+  <text x="736" y="742" font-size="15" fill="#8fa098">The panel always says which engine is running, and why.</text>
 
   <!-- ============ shortcut ============ -->
-  <g transform="translate(736 500)" font-size="15" font-weight="700" fill="#ffffff">
+  <g transform="translate(736 784)" font-size="15" font-weight="700" fill="#ffffff">
     <rect width="64" height="40" rx="8" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.22"/>
     <text x="32" y="26" text-anchor="middle">Ctrl</text>
     <text x="78" y="26" fill="#8fa098" font-weight="400">+</text>
@@ -113,6 +167,6 @@
     <rect x="180" width="44" height="40" rx="8" fill="#1ed760" fill-opacity="0.12" stroke="#1ed760" stroke-opacity="0.7"/>
     <text x="202" y="26" text-anchor="middle" fill="#1ed760">D</text>
   </g>
-  <text x="736" y="576" font-size="15" fill="#8fa098">Turns DJ Mix on or off from anywhere in Spotify.</text>
+  <text x="736" y="860" font-size="15" fill="#8fa098">Turns DJ Mix on or off from anywhere in Spotify.</text>
 </g>
 </svg>

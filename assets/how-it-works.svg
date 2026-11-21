@@ -1,15 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="588" viewBox="0 0 1280 588" role="img" aria-label="How DJ Mix works: 1 ask Spotify for the mix, 2 patch the preview signal, 3 fire on the beat, 4 chain the whole queue">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="How DJ Mix works: 1 ask Spotify for the mix, 2 patch the preview signal, 3 fire on the beat, 4 chain the whole queue; on Spotify Free, a smooth fade timed by the same recipe">
 <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0e0c"/><stop offset="1" stop-color="#0e1c14"/></linearGradient>
   <radialGradient id="glow" cx="0.1" cy="0.05" r="0.5"><stop offset="0" stop-color="#1ed760" stop-opacity="0.14"/><stop offset="1" stop-color="#1ed760" stop-opacity="0"/></radialGradient>
-  <clipPath id="card"><rect width="1280" height="588" rx="28"/></clipPath>
+  <clipPath id="card"><rect width="1280" height="800" rx="28"/></clipPath>
   <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1ed760"/></marker>
+  <marker id="arrowb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#4cc3ff"/></marker>
 </defs>
 <g clip-path="url(#card)">
-  <rect width="1280" height="588" fill="url(#bg)"/>
-  <rect width="1280" height="588" fill="url(#glow)"/>
+  <rect width="1280" height="800" fill="url(#bg)"/>
+  <rect width="1280" height="800" fill="url(#glow)"/>
 </g>
-<rect x="0.5" y="0.5" width="1279" height="587" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="0.5" y="0.5" width="1279" height="799" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
 
 <g font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif">
   <text x="48" y="74" font-size="18" font-weight="700" letter-spacing="4" fill="#1ed760">HOW IT WORKS</text>
@@ -66,6 +67,32 @@
     <text x="80" y="126" font-size="20" fill="#a7b4ad">song. Seek or skip returns you to your list.</text>
     <rect x="80" y="142" width="264" height="30" rx="8" fill="#1ed760" fill-opacity="0.1"/>
     <text x="92" y="163" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="16" fill="#8ff5b6">no restarts → no stutter</text>
+  </g>
+  <!-- 5: Spotify Free -->
+  <path d="M336 560 C336 572 640 574 640 584" fill="none" stroke="#4cc3ff" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="4 6" marker-end="url(#arrowb)"/>
+  <g transform="translate(48 588)">
+    <rect width="1184" height="176" rx="20" fill="#4cc3ff" fill-opacity="0.05" stroke="#4cc3ff" stroke-opacity="0.3"/>
+    <text x="32" y="44" font-size="14" font-weight="700" letter-spacing="3" fill="#4cc3ff">NO PREMIUM? SPOTIFY FREE</text>
+    <text x="32" y="80" font-size="26" font-weight="700" fill="#ffffff">Smooth fade, timed by the same recipe</text>
+    <text x="32" y="116" font-size="20" fill="#a7b4ad">Free plays one song at a time, so DJ Mix fades out at</text>
+    <text x="32" y="144" font-size="20" fill="#a7b4ad">Spotify's mix point and brings the next song in past its intro.</text>
+
+    <!-- fade diagram -->
+    <g transform="translate(660 36)">
+      <line x1="0" y1="112" x2="500" y2="112" stroke="#ffffff" stroke-opacity="0.15"/>
+      <path d="M0 22 H70 C150 22 150 112 230 112 L0 112 Z" fill="#e6edf3" fill-opacity="0.08"/>
+      <path d="M0 22 H70 C150 22 150 112 230 112" fill="none" stroke="#e6edf3" stroke-opacity="0.85" stroke-width="3" stroke-linecap="round"/>
+      <path d="M252 112 C292 112 292 22 332 22 H500 L500 112 Z" fill="#4cc3ff" fill-opacity="0.12"/>
+      <path d="M252 112 C292 112 292 22 332 22 H500" fill="none" stroke="#4cc3ff" stroke-width="3" stroke-linecap="round"/>
+      <line x1="70" y1="10" x2="70" y2="112" stroke="#4cc3ff" stroke-width="2"/>
+      <path d="M70 2 l6 7 l-6 7 l-6 -7 z" fill="#4cc3ff"/>
+      <line x1="241" y1="40" x2="241" y2="112" stroke="#ffffff" stroke-opacity="0.4" stroke-dasharray="3 4"/>
+      <text x="70" y="136" font-size="13" fill="#4cc3ff" text-anchor="middle">mix point</text>
+      <text x="241" y="136" font-size="13" fill="#8fa098" text-anchor="middle">skip</text>
+      <text x="312" y="136" font-size="13" fill="#8fa098" text-anchor="start">next song, past its intro</text>
+      <text x="0" y="-8" font-size="12" font-weight="700" letter-spacing="2" fill="#6f7f77">NOW PLAYING</text>
+      <text x="500" y="-8" font-size="12" font-weight="700" letter-spacing="2" fill="#6f7f77" text-anchor="end">UP NEXT</text>
+    </g>
   </g>
 </g>
 </svg>

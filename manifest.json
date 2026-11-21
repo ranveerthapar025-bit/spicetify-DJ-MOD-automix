@@ -1,11 +1,11 @@
 {
   "name": "DJ Mix",
-  "description": "Real DJ transitions in Spotify. Overlaps, beat-matches and tempo-syncs every song using Spotify's hidden automix engine, with a seek-bar mix marker, Mix now / Skip, mix filters and history.",
+  "description": "Real DJ transitions in Spotify. Beat-matched, tempo-synced overlaps on Premium from Spotify's hidden automix engine, and a smooth fade at the same mix points on Spotify Free. Seek-bar mix marker, Mix now / Skip, filters and history.",
   "preview": "assets/preview.png",
   "main": "djmix.js",
   "readme": "README.md",
   "authors": [
     { "name": "ranveerthapar025-bit", "url": "https://github.com/ranveerthapar025-bit" }
   ],
-  "tags": ["automix", "dj", "crossfade", "beatmatching"]
+  "tags": ["automix", "dj", "crossfade", "beatmatching", "free"]
 }

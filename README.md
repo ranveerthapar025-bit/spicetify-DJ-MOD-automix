@@ -6,6 +6,7 @@
   <a href="#install"><img alt="Spicetify extension" src="https://img.shields.io/badge/spicetify-extension-1ed760?style=for-the-badge&labelColor=0a0e0c"></a>
   <a href="https://github.com/ranveerthapar025-bit/spicetify-DJ-MOD-automix/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/ranveerthapar025-bit/spicetify-DJ-MOD-automix?style=for-the-badge&labelColor=0a0e0c&color=1ed760&label=release"></a>
   <img alt="Tested on Spotify 1.3.9" src="https://img.shields.io/badge/tested_on-spotify_1.3.9-1ed760?style=for-the-badge&labelColor=0a0e0c">
+  <a href="#spotify-free-accounts"><img alt="Works on Spotify Free and Premium" src="https://img.shields.io/badge/works_on-free_%2B_premium-1ed760?style=for-the-badge&labelColor=0a0e0c"></a>
   <img alt="Platform: Windows" src="https://img.shields.io/badge/platform-windows-1ed760?style=for-the-badge&labelColor=0a0e0c">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-1ed760?style=for-the-badge&labelColor=0a0e0c"></a>
 </p>
@@ -15,7 +16,8 @@
 <p align="center">
   The Spotify desktop app has a beat-matching transition engine hidden inside it.<br>
   <b>DJ Mix</b> switches it on for every song you play: the next track slides in on the beat,<br>
-  its tempo locks to the one that's playing, and the two blend like a real DJ mix. No dead air. No cheap volume fade.
+  its tempo locks to the one that's playing, and the two blend like a real DJ mix. No dead air. No hard cuts.<br>
+  <sub>On Spotify Free, where that engine won't play, DJ Mix uses a <b>Smooth fade</b> timed by the same engine's mix points.</sub>
 </p>
 
 <p align="center">
@@ -26,7 +28,7 @@
 </p>
 
 > [!TIP]
-> **New in v0.4.0:** see the next mix glowing on the seek bar, fire it early with **Mix now**, **skip** one you don't want, filter out off-beat or big-tempo mixes, and check your **mix history and stats**. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> toggles it all. [Release notes →](https://github.com/ranveerthapar025-bit/spicetify-DJ-MOD-automix/releases/tag/v0.4.0)
+> **New in v0.5.0:** DJ Mix now works on **Spotify Free**. It switches to a **Smooth fade** at Spotify's mix point when beat-matching isn't available. Queued songs and pairs with no transition fade instead of cutting, and your volume is always put back. [Release notes →](https://github.com/ranveerthapar025-bit/spicetify-DJ-MOD-automix/releases/tag/v0.5.0)
 
 ## Crossfade vs DJ Mix
 
@@ -36,7 +38,7 @@
 | **Beats** | Two songs on top of each other, usually off-beat | Lined up bar for bar whenever the engine can beat-match the pair |
 | **Tempo** | Untouched | The incoming song is sped up or slowed down a touch to lock in |
 | **What you hear** | One song fading out while another fades in | An overlap that sounds like a DJ blend |
-| **Spotify Free** | Premium only | ✅ Smooth fade at Spotify's mix point (see [Free accounts](#spotify-free-accounts)) |
+| **On Spotify Free** | The same fixed-length fade | ✅ A smooth fade at Spotify's mix point, with the next song starting past its quiet intro (see [Free accounts](#spotify-free-accounts)) |
 
 ## Features
 
@@ -53,7 +55,8 @@
 - 🎛️ **Mix filters** — only mix when Spotify can beat-match, and/or cap how much the tempo is allowed to change.
 - 📜 **Mix history and stats** — your last mixes with BPMs and tempo change, plus all-time totals: mixes, % beat-matched, average tempo shift, minutes of blending.
 - ⌨️ **Ctrl+Alt+D** — toggle DJ Mix from anywhere in Spotify.
-- 🔔 **Mix notifications** — `🎧 Mixing into <song> · beat-matched (+1.6% tempo)`, if you want them.
+- 🔊 **Volume-safe fades** — touch the volume slider mid-fade and DJ Mix backs off; seek, skip or even a crash puts your volume back.
+- 🔔 **Mix notifications** — `🎧 Mixing into <song> · beat-matched (+1.6% tempo)` or `🎚️ Fading into <song>`, if you want them.
 - 🪶 **One file** — a single JavaScript file. No servers, no accounts, nothing talks to anything except Spotify.
 
 ## Install
@@ -96,7 +99,7 @@ spicetify config extensions djmix.js
 spicetify apply
 ```
 
-Nothing in the code is Windows-specific, but it has only been tested on Windows. If your Spotify build lacks the automix engine, DJ Mix switches itself off instead of breaking anything.
+Nothing in the code is Windows-specific, but it has only been tested on Windows. If your Spotify build lacks the beat-match engine, DJ Mix falls back to Smooth fade instead of breaking anything.
 
 </details>
 
@@ -129,12 +132,12 @@ spicetify apply
 
 ## Using it
 
-Play any playlist or album and let it run. A glowing green zone appears on Spotify's seek bar where the next mix will land. About 1.5 seconds before it, the next song starts blending in.
+Play any playlist or album and let it run. A glowing zone appears on Spotify's seek bar where the next mix will land: **green** for a beat-matched mix, **blue** for a smooth fade. When the song reaches it, the next song blends in.
 
-Click the **DJ Mix button** in the playbar to open the panel. It shows the next mix live: when it lands, a countdown, how long the overlap is, both BPMs and the tempo change.
+Click the **DJ Mix button** in the playbar to open the panel. It shows the next mix live: when it lands, a countdown, how long the overlap or fade is, both BPMs and the tempo change, plus which engine is running and why.
 
 <p align="center">
-  <img src="assets/panel.svg" alt="The DJ Mix panel with a live countdown to the next mix, Mix now and Skip this mix buttons, five settings, recent mixes and all-time stats; the mix notification; the glowing next-mix zone on Spotify's seek bar; and the Ctrl+Alt+D shortcut" width="100%">
+  <img src="assets/panel.svg" alt="The DJ Mix panel with a live countdown, the engine status line, Mix now and Skip this mix buttons, engine settings, beat-match filters, recent mixes and all-time stats; next to it the beat-match and smooth-fade notifications, Spotify's seek bar with a green beat-match zone and a blue fade zone, and the Ctrl+Alt+D shortcut" width="100%">
 </p>
 <p align="center"><sub>Illustration. Song name and numbers are examples.</sub></p>
 
@@ -190,7 +193,7 @@ Grab the volume slider during a fade and DJ Mix stops and leaves your volume alo
   <img src="assets/how-it-works.svg" alt="How DJ Mix works: 1 ask Spotify for the mix, 2 patch the preview signal, 3 fire right on time, 4 chain the whole queue" width="100%">
 </p>
 
-Spotify ships a native transition engine for its playlist **Mix** feature, but doesn't offer that feature on every account. The Mix editor can *preview* a transition between any two tracks, and that preview is played by the real audio engine. DJ Mix drives that preview path during normal listening.
+Spotify ships a native transition engine for its playlist **Mix** feature, but doesn't offer that feature on every account. The Mix editor can *preview* a transition between any two tracks, and that preview is played by the real audio engine. On Premium, DJ Mix drives that preview path during normal listening. On Free, where the player ignores it, the same recipe times a smooth fade instead.
 
 <details>
 <summary><b>The details</b></summary>
@@ -201,6 +204,7 @@ Spotify ships a native transition engine for its playlist **Mix** feature, but d
 2. **Patch.** The preview goes to the player as the signal `automix-preview` with a protobuf payload that says *start 3000 ms before the overlap*. DJ Mix rewrites field 5 (start position) to the song's current position and zeroes field 6 (the relative flag), so the outgoing song carries on from exactly where it is. If the payload ever changes shape, it's left untouched.
 3. **Fire.** 1.5 s before the mix point, DJ Mix calls `playTransitionPreview`, with the editor's "pause first" and "stop the running preview" steps stubbed out so the music never stops. The clock runs in a Web Worker, because Spotify throttles normal timers to about once a second while it's minimised.
 4. **Chain.** Going back to the normal player after each mix caused a ~270 ms stutter, so DJ Mix stays in automix mode and chains each next transition, following a snapshot of your up-next list (up to 150 songs). It hands control back to your real playlist only when you seek or skip, or at a song boundary when a pair has no transition. Spotify greys out seek and back in automix mode; DJ Mix keeps them working by routing them through that hand-back.
+5. **Or fade.** When the player doesn't enter automix mode within a few seconds of a fire (Spotify Free), or the account type says Free, DJ Mix uses the Smooth fade engine. It fades the outgoing song out on an equal-power curve from Spotify's mix point, skips, seeks the next song to the recipe's entry point while it's silent, and fades it in. Your original volume is saved first and restored at the end, on any seek or skip, and on the next start if Spotify closed mid-fade.
 
 </details>
 
@@ -227,7 +231,7 @@ Open the DJ Mix panel. The status line says why, for example *Next song is from 
 </details>
 
 <details>
-<summary><b>The green zone doesn't show on the seek bar</b></summary>
+<summary><b>The green or blue zone doesn't show on the seek bar</b></summary>
 
 <br>
 

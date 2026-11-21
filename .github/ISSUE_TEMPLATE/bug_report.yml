@@ -43,6 +43,23 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: account
+    attributes:
+      label: Spotify account
+      description: Beat-matching only works on Premium; Free uses Smooth fade.
+      options:
+        - Premium
+        - Free
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: engine
+    attributes:
+      label: Engine line from the DJ Mix panel
+      description: The small "Engine:" line under the status box.
+      placeholder: "Engine: Smooth fade · Free account (beat-matching needs Premium)"
+  - type: dropdown
     id: os
     attributes:
       label: Operating system
