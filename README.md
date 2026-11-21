@@ -36,11 +36,14 @@
 | **Beats** | Two songs on top of each other, usually off-beat | Lined up bar for bar whenever the engine can beat-match the pair |
 | **Tempo** | Untouched | The incoming song is sped up or slowed down a touch to lock in |
 | **What you hear** | One song fading out while another fades in | An overlap that sounds like a DJ blend |
+| **Spotify Free** | Premium only | ✅ Smooth fade at Spotify's mix point (see [Free accounts](#spotify-free-accounts)) |
 
 ## Features
 
 - 🎚️ **Beat-matched overlaps** — every transition comes from Spotify's own automix engine, the one built for its playlist Mix feature.
 - 🥁 **Tempo sync** — the incoming song is nudged by a percent or two so the beats stay locked through the blend.
+- 🆓 **Works on Spotify Free** — Spotify only plays its beat-match engine on Premium. On Free, DJ Mix detects that and switches to a **Smooth fade** timed by the same engine's mix points.
+- 🛟 **No more hard cuts** — songs beat-match can't mix (queued songs, pairs Spotify has no transition for) get a smooth fade instead of an abrupt change.
 - 🔗 **Seamless chaining** — once the first mix fires, DJ Mix keeps mixing song after song without restarting playback, so there's no stutter between mixes.
 - ⏭️ **Your controls still work** — seek, skip and back all work mid-mix and drop you back into your playlist at the right spot.
 - 🪟 **Works when minimised** — timing runs on a background Worker clock, so mixes land on time even with Spotify in the tray.
@@ -140,8 +143,12 @@ Click the **DJ Mix button** in the playbar to open the panel. It shows the next 
 | **Mix songs like a DJ** | On | Turns mixing on or off. The playbar button lights up while it's on. |
 | **Show a notification on each mix** | On | Pops up the song that's mixing in and the tempo change. |
 | **Show the next mix on the seek bar** | On | Draws the upcoming mix point and overlap on Spotify's progress bar. |
-| **Only mix when Spotify can beat-match** | Off | Songs Spotify can only crossfade change normally instead. |
-| **Largest tempo change allowed** | Any | Skip mixes that would speed up or slow down the next song by more than ±2/4/6/8%. |
+| **Mix engine** | Auto | **Auto** beat-matches when your account supports it and smooth-fades otherwise. **Beat-match (Premium)** never fades. **Smooth fade** always fades. Picking Auto again retries beat-match after a failure. |
+| **Fade songs beat-match can't mix** | On | Queued songs and pairs with no transition get a smooth fade instead of a hard cut. |
+| **Fade length** | 6s | How long the smooth fade-out lasts (3/6/9/12s). |
+| **Start the next song past its quiet intro** | On | In a smooth fade, start the next song at the entry point Spotify's engine picked. |
+| **Only mix when Spotify can beat-match** | Off | Songs Spotify can only crossfade change normally instead (beat-match engine only). |
+| **Largest tempo change allowed** | Any | Skip mixes that would speed up or slow down the next song by more than ±2/4/6/8% (beat-match engine only). |
 
 The panel also has **⏩ Mix now** (jump to a few seconds before the next mix point) and **Skip this mix** (let the current song end normally), plus your **recent mixes** and **all-time stats**. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd> turns DJ Mix on or off.
 
@@ -152,17 +159,30 @@ Settings are saved and survive restarts.
 | When… | DJ Mix… |
 | :-- | :-- |
 | the next song comes from the playlist or album you're playing | **mixes it** |
-| the next song is one you added to the queue | lets it play normally |
+| the next song is one you added to the queue | smooth-fades into it (beat-match can't reach the queue) |
 | repeat-one is on | stays out of the way |
 | it's a podcast or audiobook episode | stays out of the way |
-| Spotify has no transition for that pair of songs | changes song normally, right at the end |
+| Spotify has no transition for that pair of songs | smooth-fades over the last few seconds |
+| you're on Spotify Free | smooth-fades at Spotify's mix point every time |
 | Spotify can only crossfade the pair and **Only mix when Spotify can beat-match** is on | changes song normally |
 | the tempo change is bigger than your **Largest tempo change allowed** | changes song normally |
 | you pressed **Skip this mix** | lets that one song end normally, then carries on mixing |
+| **Fade songs beat-match can't mix** is off | queued songs and pairs with no transition change normally |
 | you seek, skip or go back mid-session | hands you back to your playlist at that spot and keeps mixing from there |
 | you add songs to the queue while it's mixing | picks them up after your next seek or skip |
 
 When a song isn't going to be mixed, the panel tells you why.
+
+### Spotify Free accounts
+
+Spotify's beat-match engine only plays on Premium. On Free, the player silently ignores it, which is why older versions logged *mixing into…* and then nothing happened. DJ Mix 0.5 handles it two ways:
+
+1. It reads your account type at startup and goes straight to **Smooth fade** on Free.
+2. If the account type can't be read, it checks that the player actually entered mix mode after each beat-match. If not, it rescues that same transition with a fade and uses Smooth fade from then on.
+
+**What Smooth fade does:** it still asks Spotify's engine for the transition, fades the outgoing song out with an equal-power curve starting at the mix point, skips, starts the next song at the entry point the engine chose (usually past a quiet intro) and fades it in. Spotify's desktop player only plays one song at a time on Free, so two songs can't truly overlap. This is the closest it gets.
+
+Grab the volume slider during a fade and DJ Mix stops and leaves your volume alone. Seek or skip and the volume goes straight back. If Spotify closes mid-fade, your volume is restored the next time it starts.
 
 ## How it works
 
@@ -226,13 +246,24 @@ spicetify enable-devtools
 
 Then press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> in Spotify and filter the console for `[DJ Mix]`. Every planned mix is logged with its recipe, and `__djmix.plan`, `__djmix.session`, `__djmix.settings`, `__djmix.history` and `__djmix.stats` show the live state.
 
-If the console says *This Spotify version has no automix engine; extension disabled*, your Spotify build doesn't include the engine. Updating Spotify and Spicetify is the only fix.
+The panel's **Engine** line shows which engine is in use and why. `__djmix.account`, `__djmix.engine` and `__djmix.fade` show the same in the console.
+
+If the console says *This Spotify build has no beat-match engine; using Smooth fade*, your Spotify build doesn't include the engine. DJ Mix still smooth-fades.
+
+</details>
+
+<details>
+<summary><b>It says "Mixing into…" but the songs don't overlap (Spotify Free)</b></summary>
+
+<br>
+
+That was the v0.4 behaviour on Free accounts: Spotify ignores its beat-match engine there. Update to v0.5. It detects this and uses Smooth fade. If you've since upgraded to Premium, set **Mix engine** to **Auto** again to retry beat-matching.
 
 </details>
 
 ## Heads up
 
-DJ Mix runs on undocumented parts of the Spotify app. Any Spotify update can change them. If the automix engine disappears, DJ Mix switches itself off and Spotify plays as normal; smaller changes could stop mixing until the extension is updated.
+DJ Mix runs on undocumented parts of the Spotify app. Any Spotify update can change them. If the automix engine disappears, DJ Mix falls back to Smooth fade; smaller changes could stop mixing until the extension is updated.
 
 **Tested with** Spotify 1.3.9.2055 · Spicetify 2.46.7 · Windows 11.
 
